@@ -254,7 +254,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Капсул в упаковке:</span>
-                  <span className="text-[#339edc] font-bold">90 шт</span>
+                  <span className="text-[#339edc] font-bold">120 шт</span>
                 </div>
               </CardContent>
             </Card>
