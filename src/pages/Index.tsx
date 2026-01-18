@@ -101,19 +101,19 @@ const Index = () => {
       <header className="bg-white border-b border-border py-4 px-4 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#F5A962] to-[#E89244] rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#5BC0DE] to-[#339edc] rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">P</span>
             </div>
-            <h1 className="text-2xl font-bold text-[#E89244]">PharmExpert</h1>
+            <h1 className="text-2xl font-bold text-[#339edc]">PharmExpert</h1>
           </div>
           <p className="text-sm text-muted-foreground hidden md:block">Экспертный подход к вашему здоровью</p>
         </div>
       </header>
 
-      <section className="relative bg-gradient-to-br from-[#FEF7E7] via-white to-[#F5E6D3] py-16 px-4">
+      <section className="relative bg-gradient-to-br from-[#E8F4F8] via-white to-[#D4EAF2] py-16 px-4">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <Badge className="mb-4 bg-[#E89244] text-white hover:bg-[#D68234]">
+            <Badge className="mb-4 bg-[#339edc] text-white hover:bg-[#2889c4]">
               Клинически доказанная эффективность
             </Badge>
             <h1 className="text-5xl font-bold mb-6 text-foreground">
@@ -137,22 +137,22 @@ const Index = () => {
 
             <div className="flex flex-wrap gap-4 mb-8">
               <div className="flex items-center gap-2">
-                <Icon name="CheckCircle" className="text-[#E89244]" size={24} />
+                <Icon name="CheckCircle" className="text-[#339edc]" size={24} />
                 <span className="font-semibold">Усвоение 95%</span>
               </div>
               <div className="flex items-center gap-2">
-                <Icon name="Shield" className="text-[#E89244]" size={24} />
+                <Icon name="Shield" className="text-[#339edc]" size={24} />
                 <span className="font-semibold">GMP сертификат</span>
               </div>
               <div className="flex items-center gap-2">
-                <Icon name="Leaf" className="text-[#E89244]" size={24} />
+                <Icon name="Leaf" className="text-[#339edc]" size={24} />
                 <span className="font-semibold">100% натуральный</span>
               </div>
             </div>
 
             <Button 
               size="lg" 
-              className="w-full bg-[#E89244] hover:bg-[#D68234] text-white text-xl py-8"
+              className="w-full bg-[#339edc] hover:bg-[#2889c4] text-white text-xl py-8"
               onClick={() => document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Заказать со скидкой
@@ -178,7 +178,7 @@ const Index = () => {
                 <button
                   key={index}
                   className={`w-3 h-3 rounded-full transition-all ${
-                    index === selectedIndex ? 'bg-[#E89244] w-8' : 'bg-gray-300'
+                    index === selectedIndex ? 'bg-[#339edc] w-8' : 'bg-gray-300'
                   }`}
                   onClick={() => scrollTo(index)}
                 />
@@ -200,10 +200,10 @@ const Index = () => {
               { icon: 'Activity', title: 'Энергия мышц', desc: 'Предотвращает судороги, повышает выносливость' },
               { icon: 'Smile', title: 'Стрессоустойчивость', desc: 'Снижает уровень кортизола и тревожности' }
             ].map((benefit, idx) => (
-              <Card key={idx} className="hover:shadow-xl transition-shadow border-[#F5E6D3]">
+              <Card key={idx} className="hover:shadow-xl transition-shadow border-[#D4EAF2]">
                 <CardContent className="pt-6">
-                  <div className="bg-[#FEF7E7] w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                    <Icon name={benefit.icon} className="text-[#E89244]" size={28} />
+                  <div className="bg-[#E8F4F8] w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                    <Icon name={benefit.icon} className="text-[#339edc]" size={28} />
                   </div>
                   <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
                   <p className="text-muted-foreground">{benefit.desc}</p>
@@ -214,55 +214,55 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-[#FEF7E7]">
+      <section className="py-20 px-4 bg-[#E8F4F8]">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Характеристики</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-[#F5E6D3]">
+            <Card className="border-[#D4EAF2]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Форма магния:</span>
-                  <span className="text-[#E89244] font-bold">Хелат (бисглицинат)</span>
+                  <span className="text-[#339edc] font-bold">Хелат (бисглицинат)</span>
                 </div>
               </CardContent>
             </Card>
-            <Card className="border-[#F5E6D3]">
+            <Card className="border-[#D4EAF2]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Биодоступность:</span>
-                  <span className="text-[#E89244] font-bold">95%</span>
+                  <span className="text-[#339edc] font-bold">95%</span>
                 </div>
               </CardContent>
             </Card>
-            <Card className="border-[#F5E6D3]">
+            <Card className="border-[#D4EAF2]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Магний на капсулу:</span>
-                  <span className="text-[#E89244] font-bold">400 мг</span>
+                  <span className="text-[#339edc] font-bold">400 мг</span>
                 </div>
               </CardContent>
             </Card>
-            <Card className="border-[#F5E6D3]">
+            <Card className="border-[#D4EAF2]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Витамин В6:</span>
-                  <span className="text-[#E89244] font-bold">10 мг</span>
+                  <span className="text-[#339edc] font-bold">10 мг</span>
                 </div>
               </CardContent>
             </Card>
-            <Card className="border-[#F5E6D3]">
+            <Card className="border-[#D4EAF2]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Капсул в упаковке:</span>
-                  <span className="text-[#E89244] font-bold">90 шт</span>
+                  <span className="text-[#339edc] font-bold">90 шт</span>
                 </div>
               </CardContent>
             </Card>
-            <Card className="border-[#F5E6D3]">
+            <Card className="border-[#D4EAF2]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Курс приема:</span>
-                  <span className="text-[#E89244] font-bold">30 дней</span>
+                  <span className="text-[#339edc] font-bold">30 дней</span>
                 </div>
               </CardContent>
             </Card>
@@ -277,19 +277,19 @@ const Index = () => {
             Только натуральные компоненты высочайшего качества
           </p>
           <div className="space-y-4">
-            <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
+            <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
               <h4 className="font-bold mb-2 text-lg">🌿 Магний бисглицинат (хелат) — 400 мг</h4>
               <p className="text-muted-foreground">Наиболее биодоступная форма магния с органическими молекулами аминокислот</p>
             </div>
-            <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
+            <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
               <h4 className="font-bold mb-2 text-lg">💊 Пиридоксин (Витамин В6) — 10 мг</h4>
               <p className="text-muted-foreground">Усиливает усвоение магния и участвует в энергетическом обмене</p>
             </div>
-            <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
+            <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
               <h4 className="font-bold mb-2 text-lg">🌾 Растительная капсула (целлюлоза)</h4>
               <p className="text-muted-foreground">Гипоаллергенная оболочка из целлюлозы, подходит для вегетарианцев</p>
             </div>
-            <div className="bg-gradient-to-r from-[#E89244]/20 to-[#F5A962]/20 p-4 rounded-lg border-2 border-[#E89244]">
+            <div className="bg-gradient-to-r from-[#339edc]/20 to-[#5BC0DE]/20 p-4 rounded-lg border-2 border-[#339edc]">
               <p className="text-sm font-semibold text-center">
                 ✓ Без ГМО • Без глютена • Без сои • Без лактозы
               </p>
@@ -298,23 +298,23 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gradient-to-br from-[#FEF7E7] to-white">
+      <section className="py-20 px-4 bg-gradient-to-br from-[#E8F4F8] to-white">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Применение и рекомендации</h2>
-          <div className="bg-card p-8 rounded-xl shadow-lg border-2 border-[#F5E6D3]">
+          <div className="bg-card p-8 rounded-xl shadow-lg border-2 border-[#D4EAF2]">
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#E89244] mb-4">1-2</div>
+                <div className="text-5xl font-bold text-[#339edc] mb-4">1-2</div>
                 <h3 className="text-xl font-bold mb-2">Дозировка</h3>
                 <p className="text-muted-foreground">По 1-2 капсулы в день</p>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#E89244] mb-4">⏰</div>
+                <div className="text-5xl font-bold text-[#339edc] mb-4">⏰</div>
                 <h3 className="text-xl font-bold mb-2">Время приема</h3>
                 <p className="text-muted-foreground">Утром и вечером во время еды</p>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#E89244] mb-4">30</div>
+                <div className="text-5xl font-bold text-[#339edc] mb-4">30</div>
                 <h3 className="text-xl font-bold mb-2">Курс</h3>
                 <p className="text-muted-foreground">Минимум 30 дней для видимых результатов</p>
               </div>
@@ -323,23 +323,23 @@ const Index = () => {
             <h3 className="text-2xl font-bold mb-4 text-center">💡 Важные рекомендации</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
+                <Icon name="CheckCircle" className="text-[#339edc] mt-1 flex-shrink-0" size={20} />
                 <span>Запивайте достаточным количеством воды (200-250 мл)</span>
               </li>
               <li className="flex items-start gap-3">
-                <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
+                <Icon name="CheckCircle" className="text-[#339edc] mt-1 flex-shrink-0" size={20} />
                 <span>Не принимайте одновременно с кальцием — снижает усвоение (разнесите приёмы на 2-3 часа)</span>
               </li>
               <li className="flex items-start gap-3">
-                <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
+                <Icon name="CheckCircle" className="text-[#339edc] mt-1 flex-shrink-0" size={20} />
                 <span>Лучше усваивается при приёме с белковой пищей</span>
               </li>
               <li className="flex items-start gap-3">
-                <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
+                <Icon name="CheckCircle" className="text-[#339edc] mt-1 flex-shrink-0" size={20} />
                 <span>Первые результаты заметны через 7-14 дней регулярного приёма</span>
               </li>
               <li className="flex items-start gap-3">
-                <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
+                <Icon name="CheckCircle" className="text-[#339edc] mt-1 flex-shrink-0" size={20} />
                 <span>Хелатная форма не вызывает расстройств ЖКТ в отличие от оксида магния</span>
               </li>
             </ul>
@@ -357,7 +357,7 @@ const Index = () => {
               { name: 'Дмитрий, 42 года', rating: 5, text: 'Работаю в IT, постоянный стресс. После курса магния концентрация улучшилась, перестал пить 5 чашек кофе в день. Рекомендую!' },
               { name: 'Ольга, 28 лет', rating: 5, text: 'Принимаю второй месяц. Ушла хроническая усталость, настроение стабильное, энергии хватает на работу и спортзал. Буду заказывать ещё!' }
             ].map((review, idx) => (
-              <Card key={idx} className="hover:shadow-xl transition-shadow border-[#F5E6D3]">
+              <Card key={idx} className="hover:shadow-xl transition-shadow border-[#D4EAF2]">
                 <CardContent className="pt-6">
                   <div className="flex gap-1 mb-3">
                     {Array.from({ length: review.rating }).map((_, i) => (
@@ -365,7 +365,7 @@ const Index = () => {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-4 italic">"{review.text}"</p>
-                  <p className="font-semibold text-[#E89244]">{review.name}</p>
+                  <p className="font-semibold text-[#339edc]">{review.name}</p>
                 </CardContent>
               </Card>
             ))}
@@ -373,11 +373,11 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-[#FEF7E7]">
+      <section className="py-20 px-4 bg-[#E8F4F8]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Вопросы и ответы</h2>
           <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="q1" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
+            <AccordionItem value="q1" className="bg-card px-6 rounded-lg border-[#D4EAF2]">
               <AccordionTrigger className="text-lg font-semibold">
                 Чем хелат магния лучше других форм?
               </AccordionTrigger>
@@ -385,7 +385,7 @@ const Index = () => {
                 Хелатная форма имеет биодоступность до 95% против 30-40% у оксида магния. Магний связан с аминокислотами, что обеспечивает максимальное усвоение без побочных эффектов со стороны ЖКТ.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="q2" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
+            <AccordionItem value="q2" className="bg-card px-6 rounded-lg border-[#D4EAF2]">
               <AccordionTrigger className="text-lg font-semibold">
                 Есть ли побочные эффекты?
               </AccordionTrigger>
@@ -393,7 +393,7 @@ const Index = () => {
                 Хелат магния — самая безопасная форма. В отличие от оксида или цитрата, не вызывает расстройств ЖКТ. Возможна индивидуальная непереносимость компонентов (крайне редко).
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="q3" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
+            <AccordionItem value="q3" className="bg-card px-6 rounded-lg border-[#D4EAF2]">
               <AccordionTrigger className="text-lg font-semibold">
                 Когда будет результат?
               </AccordionTrigger>
@@ -401,7 +401,7 @@ const Index = () => {
                 Первые эффекты (улучшение сна, снижение тревожности) — через 7-10 дней. Полный эффект по энергии, концентрации, устранению судорог — через 3-4 недели регулярного приёма.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="q4" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
+            <AccordionItem value="q4" className="bg-card px-6 rounded-lg border-[#D4EAF2]">
               <AccordionTrigger className="text-lg font-semibold">
                 Можно ли принимать беременным?
               </AccordionTrigger>
@@ -409,7 +409,7 @@ const Index = () => {
                 Магний безопасен при беременности и лактации, но дозировку должен определить врач. Проконсультируйтесь с вашим акушером-гинекологом перед началом приёма.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="q5" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
+            <AccordionItem value="q5" className="bg-card px-6 rounded-lg border-[#D4EAF2]">
               <AccordionTrigger className="text-lg font-semibold">
                 Совместим ли с другими добавками?
               </AccordionTrigger>
@@ -421,9 +421,9 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="order-form" className="py-20 px-4 bg-gradient-to-br from-white to-[#FEF7E7]">
+      <section id="order-form" className="py-20 px-4 bg-gradient-to-br from-white to-[#E8F4F8]">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-card p-8 rounded-2xl shadow-2xl border-2 border-[#E89244]">
+          <div className="bg-card p-8 rounded-2xl shadow-2xl border-2 border-[#339edc]">
             <h2 className="text-3xl font-bold text-center mb-2">Оформить заказ</h2>
             <p className="text-center text-muted-foreground mb-8">
               Заполните форму, и мы свяжемся с вами для подтверждения
@@ -485,7 +485,7 @@ const Index = () => {
                       <button
                         key={idx}
                         type="button"
-                        className="w-full text-left px-4 py-3 hover:bg-[#FEF7E7] transition-colors border-b last:border-b-0"
+                        className="w-full text-left px-4 py-3 hover:bg-[#E8F4F8] transition-colors border-b last:border-b-0"
                         onClick={() => selectAddress(suggestion)}
                       >
                         <p className="font-medium">{suggestion.value}</p>
@@ -525,21 +525,21 @@ const Index = () => {
                   onValueChange={(value) => setOrderForm({ ...orderForm, paymentMethod: value })}
                   className="mt-2 space-y-3"
                 >
-                  <div className="flex items-center space-x-2 border border-border rounded-lg p-4 hover:bg-[#FEF7E7] transition-colors cursor-pointer">
+                  <div className="flex items-center space-x-2 border border-border rounded-lg p-4 hover:bg-[#E8F4F8] transition-colors cursor-pointer">
                     <RadioGroupItem value="card" id="card" />
                     <Label htmlFor="card" className="cursor-pointer flex-1">
                       <div className="flex items-center gap-2">
-                        <Icon name="CreditCard" size={20} className="text-[#E89244]" />
+                        <Icon name="CreditCard" size={20} className="text-[#339edc]" />
                         <span className="font-semibold">Банковская карта</span>
                       </div>
                       <p className="text-sm text-muted-foreground mt-1">Visa, MasterCard, МИР</p>
                     </Label>
                   </div>
-                  <div className="flex items-center space-x-2 border border-border rounded-lg p-4 hover:bg-[#FEF7E7] transition-colors cursor-pointer">
+                  <div className="flex items-center space-x-2 border border-border rounded-lg p-4 hover:bg-[#E8F4F8] transition-colors cursor-pointer">
                     <RadioGroupItem value="sbp" id="sbp" />
                     <Label htmlFor="sbp" className="cursor-pointer flex-1">
                       <div className="flex items-center gap-2">
-                        <Icon name="Smartphone" size={20} className="text-[#E89244]" />
+                        <Icon name="Smartphone" size={20} className="text-[#339edc]" />
                         <span className="font-semibold">СБП (Система Быстрых Платежей)</span>
                       </div>
                       <p className="text-sm text-muted-foreground mt-1">Оплата через мобильный банк</p>
@@ -548,7 +548,7 @@ const Index = () => {
                 </RadioGroup>
               </div>
 
-              <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
+              <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
                 <div className="flex items-center justify-between mb-4">
                   <Label htmlFor="quantity">Количество:</Label>
                   <Input
@@ -564,7 +564,7 @@ const Index = () => {
                 <div className="flex justify-between items-baseline">
                   <span className="text-xl font-semibold">Итого к оплате:</span>
                   <div className="text-right">
-                    <span className="text-3xl font-bold text-[#E89244]">{totalPrice.toLocaleString()} ₽</span>
+                    <span className="text-3xl font-bold text-[#339edc]">{totalPrice.toLocaleString()} ₽</span>
                     {orderForm.quantity > 1 && (
                       <p className="text-sm text-muted-foreground">
                         {orderForm.quantity} шт × 1 230 ₽
@@ -576,7 +576,7 @@ const Index = () => {
 
               <Button 
                 type="submit" 
-                className="w-full bg-[#E89244] hover:bg-[#D68234] text-white text-xl py-8"
+                className="w-full bg-[#339edc] hover:bg-[#2889c4] text-white text-xl py-8"
               >
                 Перейти к оплате
               </Button>
@@ -589,7 +589,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-gradient-to-br from-[#E89244] to-[#D68234] text-white">
+      <section className="py-20 px-4 bg-gradient-to-br from-[#339edc] to-[#2889c4] text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Почему выбирают PharmExpert?</h2>
           <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -617,7 +617,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#F5A962] to-[#E89244] rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-[#5BC0DE] to-[#339edc] rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-xl">P</span>
                 </div>
                 <h3 className="text-2xl font-bold">PharmExpert</h3>
