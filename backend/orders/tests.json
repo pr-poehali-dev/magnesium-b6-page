@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "Test OPTIONS CORS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedHeaders": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS"
+      }
+    },
+    {
+      "name": "Test POST order creation",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "fullName": "Тестовый Покупатель",
+        "phone": "+7 (900) 123-45-67",
+        "email": "test@example.com",
+        "address": "Москва, ул. Тестовая, д. 1",
+        "deliveryMethod": "cdek",
+        "paymentMethod": "card",
+        "quantity": 2
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "orderId": "number"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
