@@ -17,11 +17,11 @@ const Index = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const carouselImages = [
-    'https://cdn.poehali.dev/files/1.png',
-    'https://cdn.poehali.dev/files/2.png',
-    'https://cdn.poehali.dev/files/3.png',
-    'https://cdn.poehali.dev/files/4.png',
-    'https://cdn.poehali.dev/files/5.png',
+    'https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/1.png',
+    'https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/2.png',
+    'https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/3.png',
+    'https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/4.png',
+    'https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/5.png',
   ];
 
   const [orderForm, setOrderForm] = useState({
