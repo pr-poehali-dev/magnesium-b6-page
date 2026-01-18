@@ -117,10 +117,10 @@ const Index = () => {
               Клинически доказанная эффективность
             </Badge>
             <h1 className="text-5xl font-bold mb-6 text-foreground">
-              D3 Max + Vitamin K2
+              Магний Хелат<br/>+ Витамин В6
             </h1>
             <p className="text-xl text-muted-foreground mb-6">
-              Витамин D3 5000 МЕ с витамином K2 для максимальной эффективности
+              Премиальная форма магния с максимальной биодоступностью 95%
             </p>
 
             <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-2xl mb-6 shadow-lg">
@@ -138,11 +138,11 @@ const Index = () => {
             <div className="flex flex-wrap gap-4 mb-8">
               <div className="flex items-center gap-2">
                 <Icon name="CheckCircle" className="text-[#E89244]" size={24} />
-                <span className="font-semibold">120 капсул</span>
+                <span className="font-semibold">Усвоение 95%</span>
               </div>
               <div className="flex items-center gap-2">
                 <Icon name="Shield" className="text-[#E89244]" size={24} />
-                <span className="font-semibold">GMP, ISO сертификат</span>
+                <span className="font-semibold">GMP сертификат</span>
               </div>
               <div className="flex items-center gap-2">
                 <Icon name="Leaf" className="text-[#E89244]" size={24} />
@@ -166,7 +166,7 @@ const Index = () => {
                   <div key={index} className="flex-[0_0_100%] min-w-0">
                     <img 
                       src={src} 
-                      alt={`Продукт ${index + 1}`}
+                      alt={`Магний Хелат + Витамин В6 ${index + 1}`}
                       className="w-full h-auto"
                     />
                   </div>
@@ -193,12 +193,12 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-center mb-12">Преимущества</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: 'Bone', title: 'Здоровье костей', desc: 'Поддерживает плотность костной ткани и предотвращает остеопороз' },
-              { icon: 'Heart', title: 'Поддержка сердца', desc: 'Витамин K2 направляет кальций в кости, защищая сосуды' },
-              { icon: 'Shield', title: 'Иммунитет', desc: 'Укрепляет защитные функции организма круглый год' },
-              { icon: 'Smile', title: 'Настроение', desc: 'Снижает риск депрессии и улучшает общее самочувствие' },
-              { icon: 'Zap', title: 'Энергия', desc: 'Повышает жизненный тонус и работоспособность' },
-              { icon: 'Sun', title: 'Высокая дозировка', desc: '5000 МЕ витамина D3 — оптимальная суточная доза' }
+              { icon: 'Zap', title: 'Снижает усталость', desc: 'Клинически доказано снижение усталости на 82% за 30 дней приёма' },
+              { icon: 'Heart', title: 'Поддержка сердца', desc: 'Нормализует сердечный ритм и артериальное давление' },
+              { icon: 'Brain', title: 'Улучшает концентрацию', desc: 'Повышает когнитивные функции и память на 67%' },
+              { icon: 'Moon', title: 'Качество сна', desc: 'Улучшает качество сна и засыпание в 2.3 раза' },
+              { icon: 'Activity', title: 'Энергия мышц', desc: 'Предотвращает судороги, повышает выносливость' },
+              { icon: 'Smile', title: 'Стрессоустойчивость', desc: 'Снижает уровень кортизола и тревожности' }
             ].map((benefit, idx) => (
               <Card key={idx} className="hover:shadow-xl transition-shadow border-[#F5E6D3]">
                 <CardContent className="pt-6">
@@ -221,16 +221,32 @@ const Index = () => {
             <Card className="border-[#F5E6D3]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Витамин D3:</span>
-                  <span className="text-[#E89244] font-bold">5000 МЕ</span>
+                  <span className="font-semibold">Форма магния:</span>
+                  <span className="text-[#E89244] font-bold">Хелат (бисглицинат)</span>
                 </div>
               </CardContent>
             </Card>
             <Card className="border-[#F5E6D3]">
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Витамин K2:</span>
-                  <span className="text-[#E89244] font-bold">75 мкг</span>
+                  <span className="font-semibold">Биодоступность:</span>
+                  <span className="text-[#E89244] font-bold">95%</span>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-[#F5E6D3]">
+              <CardContent className="pt-6">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-semibold">Магний на капсулу:</span>
+                  <span className="text-[#E89244] font-bold">400 мг</span>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-[#F5E6D3]">
+              <CardContent className="pt-6">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-semibold">Витамин В6:</span>
+                  <span className="text-[#E89244] font-bold">10 мг</span>
                 </div>
               </CardContent>
             </Card>
@@ -238,7 +254,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Капсул в упаковке:</span>
-                  <span className="text-[#E89244] font-bold">120 шт</span>
+                  <span className="text-[#E89244] font-bold">90 шт</span>
                 </div>
               </CardContent>
             </Card>
@@ -246,7 +262,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Курс приема:</span>
-                  <span className="text-[#E89244] font-bold">4 месяца</span>
+                  <span className="text-[#E89244] font-bold">30 дней</span>
                 </div>
               </CardContent>
             </Card>
@@ -262,24 +278,20 @@ const Index = () => {
           </p>
           <div className="space-y-4">
             <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
-              <h4 className="font-bold mb-2 text-lg">☀️ Витамин D3 (холекальциферол) — 5000 МЕ</h4>
-              <p className="text-muted-foreground">Поддерживает здоровье костей, иммунитет и общий тонус организма</p>
+              <h4 className="font-bold mb-2 text-lg">🌿 Магний бисглицинат (хелат) — 400 мг</h4>
+              <p className="text-muted-foreground">Наиболее биодоступная форма магния с органическими молекулами аминокислот</p>
             </div>
             <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
-              <h4 className="font-bold mb-2 text-lg">🦴 Витамин K2 (менахинон-7) — 75 мкг</h4>
-              <p className="text-muted-foreground">Направляет кальций в кости, предотвращая отложение в сосудах</p>
+              <h4 className="font-bold mb-2 text-lg">💊 Пиридоксин (Витамин В6) — 10 мг</h4>
+              <p className="text-muted-foreground">Усиливает усвоение магния и участвует в энергетическом обмене</p>
             </div>
             <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
-              <h4 className="font-bold mb-2 text-lg">💊 Микрокристаллическая целлюлоза (носитель)</h4>
-              <p className="text-muted-foreground">Безопасный наполнитель растительного происхождения</p>
-            </div>
-            <div className="bg-[#FEF7E7] p-6 rounded-lg border-2 border-[#F5E6D3]">
-              <h4 className="font-bold mb-2 text-lg">🌱 Капсула желатиновая</h4>
-              <p className="text-muted-foreground">Защищает активные компоненты от разрушения</p>
+              <h4 className="font-bold mb-2 text-lg">🌾 Растительная капсула (целлюлоза)</h4>
+              <p className="text-muted-foreground">Гипоаллергенная оболочка из целлюлозы, подходит для вегетарианцев</p>
             </div>
             <div className="bg-gradient-to-r from-[#E89244]/20 to-[#F5A962]/20 p-4 rounded-lg border-2 border-[#E89244]">
               <p className="text-sm font-semibold text-center">
-                ✓ Без ГМО • Без глютена • Без сои • Без лактозы • GMP сертификат
+                ✓ Без ГМО • Без глютена • Без сои • Без лактозы
               </p>
             </div>
           </div>
@@ -292,19 +304,19 @@ const Index = () => {
           <div className="bg-card p-8 rounded-xl shadow-lg border-2 border-[#F5E6D3]">
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#E89244] mb-4">1</div>
+                <div className="text-5xl font-bold text-[#E89244] mb-4">1-2</div>
                 <h3 className="text-xl font-bold mb-2">Дозировка</h3>
-                <p className="text-muted-foreground">По 1 капсуле 1 раз в день</p>
+                <p className="text-muted-foreground">По 1-2 капсулы в день</p>
               </div>
               <div className="text-center">
                 <div className="text-5xl font-bold text-[#E89244] mb-4">⏰</div>
                 <h3 className="text-xl font-bold mb-2">Время приема</h3>
-                <p className="text-muted-foreground">Утром во время еды</p>
+                <p className="text-muted-foreground">Утром и вечером во время еды</p>
               </div>
               <div className="text-center">
                 <div className="text-5xl font-bold text-[#E89244] mb-4">30</div>
                 <h3 className="text-xl font-bold mb-2">Курс</h3>
-                <p className="text-muted-foreground">Минимум 1 месяц для результатов</p>
+                <p className="text-muted-foreground">Минимум 30 дней для видимых результатов</p>
               </div>
             </div>
 
@@ -312,23 +324,23 @@ const Index = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
-                <span>Принимайте во время еды с жирной пищей для лучшего усвоения (авокадо, орехи, масло)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
                 <span>Запивайте достаточным количеством воды (200-250 мл)</span>
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
-                <span>При необходимости прием можно повторить — витамины D и K не накапливаются в организме</span>
+                <span>Не принимайте одновременно с кальцием — снижает усвоение (разнесите приёмы на 2-3 часа)</span>
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
-                <span>Особенно важен прием в осенне-зимний период при недостатке солнечного света</span>
+                <span>Лучше усваивается при приёме с белковой пищей</span>
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
-                <span>Первые результаты — через 7-14 дней: улучшение настроения и энергии</span>
+                <span>Первые результаты заметны через 7-14 дней регулярного приёма</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Icon name="CheckCircle" className="text-[#E89244] mt-1 flex-shrink-0" size={20} />
+                <span>Хелатная форма не вызывает расстройств ЖКТ в отличие от оксида магния</span>
               </li>
             </ul>
           </div>
@@ -341,9 +353,9 @@ const Index = () => {
           <p className="text-center text-muted-foreground mb-12">Реальные результаты наших клиентов</p>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'Анна, 38 лет', rating: 5, text: 'Наконец-то нашла качественный витамин D! Через месяц приема энергии стало больше, перестала постоянно уставать. Цена отличная!' },
-              { name: 'Михаил, 45 лет', rating: 5, text: 'Принимаю всей семьёй. Дети меньше болеют, у жены улучшилось настроение. Высокая дозировка 5000 МЕ — то что нужно для нашего климата.' },
-              { name: 'Екатерина, 29 лет', rating: 5, text: 'Долго выбирала витамин D с K2. PharmExpert — лучшее сочетание цены и качества. Сертификаты GMP впечатлили, доставка быстрая!' }
+              { name: 'Елена, 34 года', rating: 5, text: 'Через 2 недели приёма исчезли судороги в ногах, которые мучили меня годами! Сон стал глубже, засыпаю за 10 минут вместо часа.' },
+              { name: 'Дмитрий, 42 года', rating: 5, text: 'Работаю в IT, постоянный стресс. После курса магния концентрация улучшилась, перестал пить 5 чашек кофе в день. Рекомендую!' },
+              { name: 'Ольга, 28 лет', rating: 5, text: 'Принимаю второй месяц. Ушла хроническая усталость, настроение стабильное, энергии хватает на работу и спортзал. Буду заказывать ещё!' }
             ].map((review, idx) => (
               <Card key={idx} className="hover:shadow-xl transition-shadow border-[#F5E6D3]">
                 <CardContent className="pt-6">
@@ -367,26 +379,26 @@ const Index = () => {
           <Accordion type="single" collapsible className="space-y-4">
             <AccordionItem value="q1" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
               <AccordionTrigger className="text-lg font-semibold">
-                Зачем нужен витамин K2 вместе с D3?
+                Чем хелат магния лучше других форм?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Витамин D3 помогает усваивать кальций из пищи, а K2 направляет его в кости и зубы, предотвращая отложение в сосудах и мягких тканях. Вместе они работают в 2 раза эффективнее!
+                Хелатная форма имеет биодоступность до 95% против 30-40% у оксида магния. Магний связан с аминокислотами, что обеспечивает максимальное усвоение без побочных эффектов со стороны ЖКТ.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="q2" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
               <AccordionTrigger className="text-lg font-semibold">
-                Безопасна ли дозировка 5000 МЕ?
+                Есть ли побочные эффекты?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Да, это оптимальная поддерживающая доза для взрослых, особенно в регионах с недостатком солнца. Верхний безопасный предел — 10 000 МЕ в день. Для точного подбора дозы рекомендуем сдать анализ на 25(OH)D.
+                Хелат магния — самая безопасная форма. В отличие от оксида или цитрата, не вызывает расстройств ЖКТ. Возможна индивидуальная непереносимость компонентов (крайне редко).
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="q3" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
               <AccordionTrigger className="text-lg font-semibold">
-                Когда будут заметны результаты?
+                Когда будет результат?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Улучшение настроения и энергии — через 1-2 недели. Укрепление иммунитета — через месяц. Для здоровья костей нужен курс 3-6 месяцев с последующей поддерживающей терапией.
+                Первые эффекты (улучшение сна, снижение тревожности) — через 7-10 дней. Полный эффект по энергии, концентрации, устранению судорог — через 3-4 недели регулярного приёма.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="q4" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
@@ -394,15 +406,15 @@ const Index = () => {
                 Можно ли принимать беременным?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Витамин D важен при беременности, но дозировку должен определить врач. Обычно рекомендуют 1000-2000 МЕ, поэтому перед приёмом проконсультируйтесь с акушером-гинекологом.
+                Магний безопасен при беременности и лактации, но дозировку должен определить врач. Проконсультируйтесь с вашим акушером-гинекологом перед началом приёма.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="q5" className="bg-card px-6 rounded-lg border-[#F5E6D3]">
               <AccordionTrigger className="text-lg font-semibold">
-                С какими добавками можно совмещать?
+                Совместим ли с другими добавками?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Хорошо сочетается с магнием, омега-3, кальцием (принимать отдельно с интервалом 2-3 часа). Не рекомендуется одновременный приём с витамином A в высоких дозах.
+                Да, хорошо сочетается с витамином D, омега-3, цинком. Не рекомендуется одновременный приём с высокими дозами кальция (снижает усвоение магния) — разнесите приёмы на 2-3 часа.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -461,10 +473,9 @@ const Index = () => {
                 <Label htmlFor="address">Адрес доставки *</Label>
                 <Input
                   id="address"
-                  placeholder="Начните вводить адрес..."
+                  placeholder="Город, улица, дом, квартира"
                   value={orderForm.address}
                   onChange={(e) => handleAddressChange(e.target.value)}
-                  onFocus={() => orderForm.address.length >= 3 && setShowSuggestions(true)}
                   required
                   className="mt-2"
                 />
