@@ -48,8 +48,9 @@ def handler(event: dict, context) -> dict:
             
             update_order_payment_status(order_id, 'paid')
             
-            send_email_notification(order_data, 'payment_success')
-            send_telegram_notification(order_data, 'payment_success')
+            # TODO: Включить уведомления после настройки SMTP/Telegram
+            # send_email_notification(order_data, 'payment_success')
+            # send_telegram_notification(order_data, 'payment_success')
         
         return {
             'statusCode': 200,
@@ -120,8 +121,9 @@ def handler(event: dict, context) -> dict:
         
         save_order_to_db(order_data)
         
-        send_email_notification(order_data, 'new_order')
-        send_telegram_notification(order_data, 'new_order')
+        # TODO: Включить уведомления после настройки SMTP/Telegram
+        # send_email_notification(order_data, 'new_order')
+        # send_telegram_notification(order_data, 'new_order')
         
         payment_url = create_yookassa_payment(order_data)
         
