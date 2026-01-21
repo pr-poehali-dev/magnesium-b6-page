@@ -7,6 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
 import psycopg2
+import threading
 
 
 def handler(event: dict, context) -> dict:
@@ -48,7 +49,11 @@ def handler(event: dict, context) -> dict:
             
             update_order_payment_status(order_id, 'paid')
             
-            send_telegram_notification(order_data, 'payment_success')
+            # Асинхронная отправка уведомлений
+            threading.Thread(
+                target=send_notifications_async,
+                args=(order_data, 'payment_success')
+            ).start()
         
         return {
             'statusCode': 200,
@@ -119,7 +124,11 @@ def handler(event: dict, context) -> dict:
         
         save_order_to_db(order_data)
         
-        send_telegram_notification(order_data, 'new_order')
+        # Асинхронная отправка уведомлений (не блокирует ответ)
+        threading.Thread(
+            target=send_notifications_async,
+            args=(order_data, 'new_order')
+        ).start()
         
         payment_url = create_yookassa_payment(order_data)
         
@@ -141,6 +150,15 @@ def handler(event: dict, context) -> dict:
         'headers': {'Access-Control-Allow-Origin': '*'},
         'body': json.dumps({'error': 'Method not allowed'})
     }
+
+
+def send_notifications_async(order_data: dict, notification_type: str):
+    """Асинхронная отправка всех уведомлений"""
+    try:
+        send_telegram_notification(order_data, notification_type)
+        send_email_notification(order_data, notification_type)
+    except Exception as e:
+        print(f"Notification error: {e}")
 
 
 def send_email_notification(order_data: dict, notification_type: str):
