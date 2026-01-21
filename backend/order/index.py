@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
+import psycopg2
 
 
 def handler(event: dict, context) -> dict:
@@ -20,7 +21,7 @@ def handler(event: dict, context) -> dict:
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type'
             },
             'body': ''
@@ -45,6 +46,8 @@ def handler(event: dict, context) -> dict:
                 'email': email
             }
             
+            update_order_payment_status(order_id, 'paid')
+            
             send_email_notification(order_data, 'payment_success')
             send_telegram_notification(order_data, 'payment_success')
         
@@ -56,6 +59,24 @@ def handler(event: dict, context) -> dict:
             },
             'body': json.dumps({'status': 'ok'})
         }
+
+    if method == 'GET':
+        try:
+            orders = get_all_orders()
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'orders': orders})
+            }
+        except Exception as e:
+            return {
+                'statusCode': 500,
+                'headers': {'Access-Control-Allow-Origin': '*'},
+                'body': json.dumps({'error': str(e)})
+            }
 
     if method == 'POST':
         body = json.loads(event.get('body', '{}'))
@@ -82,6 +103,8 @@ def handler(event: dict, context) -> dict:
             'quantity': quantity,
             'totalPrice': total_price
         }
+        
+        save_order_to_db(order_data)
         
         send_email_notification(order_data, 'new_order')
         send_telegram_notification(order_data, 'new_order')
@@ -211,6 +234,121 @@ def send_telegram_notification(order_data: dict, notification_type: str):
             response.read()
     except Exception as e:
         print(f"Telegram error: {e}")
+
+
+def get_all_orders():
+    """Получение всех заказов из БД"""
+    database_url = os.environ.get('DATABASE_URL')
+    schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
+    
+    if not database_url:
+        return []
+    
+    try:
+        conn = psycopg2.connect(database_url)
+        cursor = conn.cursor()
+        
+        query = f"""
+            SELECT id, order_id, full_name, phone, email, address, 
+                   delivery_method, payment_method, quantity, total_price, 
+                   payment_status, created_at, updated_at
+            FROM {schema}.orders
+            ORDER BY created_at DESC
+        """
+        
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        
+        orders = []
+        for row in rows:
+            orders.append({
+                'id': row[0],
+                'orderId': row[1],
+                'fullName': row[2],
+                'phone': row[3],
+                'email': row[4],
+                'address': row[5],
+                'deliveryMethod': row[6],
+                'paymentMethod': row[7],
+                'quantity': row[8],
+                'totalPrice': row[9],
+                'paymentStatus': row[10],
+                'createdAt': row[11].isoformat() if row[11] else None,
+                'updatedAt': row[12].isoformat() if row[12] else None
+            })
+        
+        cursor.close()
+        conn.close()
+        
+        return orders
+    except Exception as e:
+        print(f"DB fetch error: {e}")
+        return []
+
+
+def save_order_to_db(order_data: dict):
+    """Сохранение заказа в базу данных"""
+    database_url = os.environ.get('DATABASE_URL')
+    schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
+    
+    if not database_url:
+        return
+    
+    try:
+        conn = psycopg2.connect(database_url)
+        cursor = conn.cursor()
+        
+        query = f"""
+            INSERT INTO {schema}.orders 
+            (order_id, full_name, phone, email, address, delivery_method, payment_method, quantity, total_price, payment_status)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        
+        cursor.execute(query, (
+            order_data['orderId'],
+            order_data['fullName'],
+            order_data['phone'],
+            order_data['email'],
+            order_data['address'],
+            order_data['deliveryMethod'],
+            order_data['paymentMethod'],
+            order_data['quantity'],
+            order_data['totalPrice'],
+            'pending'
+        ))
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
+    except Exception as e:
+        print(f"DB save error: {e}")
+
+
+def update_order_payment_status(order_id: str, status: str):
+    """Обновление статуса оплаты заказа"""
+    database_url = os.environ.get('DATABASE_URL')
+    schema = os.environ.get('MAIN_DB_SCHEMA', 'public')
+    
+    if not database_url:
+        return
+    
+    try:
+        conn = psycopg2.connect(database_url)
+        cursor = conn.cursor()
+        
+        query = f"""
+            UPDATE {schema}.orders 
+            SET payment_status = %s, updated_at = CURRENT_TIMESTAMP
+            WHERE order_id = %s
+        """
+        
+        cursor.execute(query, (status, order_id))
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
+    except Exception as e:
+        print(f"DB update error: {e}")
 
 
 def create_yookassa_payment(order_data: dict) -> str:
