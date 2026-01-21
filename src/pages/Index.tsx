@@ -408,9 +408,9 @@ const Index = () => {
           <div className="bg-card p-8 rounded-xl shadow-lg border-2 border-[#D4EAF2]">
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#339edc] mb-4">1-2</div>
+                <div className="text-5xl font-bold text-[#339edc] mb-4">4 капсулы</div>
                 <h3 className="text-xl font-bold mb-2">Дозировка</h3>
-                <p className="text-muted-foreground">По 1-2 капсулы в день</p>
+                <p className="text-muted-foreground">Порция 4 капсулы в день</p>
               </div>
               <div className="text-center">
                 <div className="text-5xl font-bold text-[#339edc] mb-4">⏰</div>
@@ -418,7 +418,7 @@ const Index = () => {
                 <p className="text-muted-foreground">Утром и вечером во время еды</p>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#339edc] mb-4">30</div>
+                <div className="text-5xl font-bold text-[#339edc] mb-4">30 дней</div>
                 <h3 className="text-xl font-bold mb-2">Курс</h3>
                 <p className="text-muted-foreground">Минимум 30 дней для видимых результатов</p>
               </div>
