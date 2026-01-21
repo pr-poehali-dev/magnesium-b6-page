@@ -413,7 +413,7 @@ def create_yookassa_payment(order_data: dict) -> str:
         },
         'confirmation': {
             'type': 'redirect',
-            'return_url': f"https://YOUR_DOMAIN/success?orderId={order_data['orderId']}"
+            'return_url': f"https://preview--magnesium-b6-page.poehali.dev/success?orderId={order_data['orderId']}"
         },
         'capture': True,
         'description': f"Заказ #{order_data['orderId']} - Магний Хелат + Витамин В6",
