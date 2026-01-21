@@ -188,9 +188,81 @@ const Index = () => {
         </div>
       </section>
 
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-br from-[#339edc] to-[#2889c4] rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
+            
+            <div className="relative z-10">
+              <div className="text-center mb-8">
+                <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30 text-lg px-6 py-2">
+                  Покупайте напрямую у производителя
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Почему выгоднее покупать у нас, а не на маркетплейсах?
+                </h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <Icon name="TrendingDown" className="text-white" size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-center">Цена ниже на 40%</h3>
+                  <p className="text-white/90 text-center">
+                    Без наценки маркетплейсов. У нас 1 230 ₽, на WB/Ozon — 1 999 ₽
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <Icon name="Shield" className="text-white" size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-center">100% оригинал</h3>
+                  <p className="text-white/90 text-center">
+                    Гарантия подлинности от производителя. Никаких подделок и пересортицы
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <Icon name="Calendar" className="text-white" size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-center">Свежая партия</h3>
+                  <p className="text-white/90 text-center">
+                    Прямые поставки. Срок годности максимальный — продукт произведен в этом месяце
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <Icon name="Headphones" className="text-white" size={32} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-center">Прямая поддержка</h3>
+                  <p className="text-white/90 text-center">
+                    Консультация от производителя. Ответим на вопросы о применении и совместимости
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-8 text-center">
+                <Button 
+                  size="lg" 
+                  className="bg-white text-[#339edc] hover:bg-white/90 text-xl px-12 py-6 font-bold shadow-xl"
+                  onClick={() => document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Заказать со скидкой 40%
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 px-4 bg-card">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">Преимущества</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">Преимущества продукта</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { icon: 'Zap', title: 'Снижает усталость', desc: 'Клинически доказано снижение усталости на 82% за 30 дней приёма' },
