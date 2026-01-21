@@ -48,9 +48,7 @@ def handler(event: dict, context) -> dict:
             
             update_order_payment_status(order_id, 'paid')
             
-            # TODO: Включить уведомления после настройки SMTP/Telegram
-            # send_email_notification(order_data, 'payment_success')
-            # send_telegram_notification(order_data, 'payment_success')
+            send_telegram_notification(order_data, 'payment_success')
         
         return {
             'statusCode': 200,
@@ -121,9 +119,7 @@ def handler(event: dict, context) -> dict:
         
         save_order_to_db(order_data)
         
-        # TODO: Включить уведомления после настройки SMTP/Telegram
-        # send_email_notification(order_data, 'new_order')
-        # send_telegram_notification(order_data, 'new_order')
+        send_telegram_notification(order_data, 'new_order')
         
         payment_url = create_yookassa_payment(order_data)
         
@@ -215,26 +211,47 @@ def send_telegram_notification(order_data: dict, notification_type: str):
     if not bot_token or not chat_id:
         return
     
+    delivery_names = {
+        'cdek': 'СДЭК',
+        'yandex': 'Яндекс Доставка',
+        'ozon': 'Ozon Доставка',
+        'wb': 'WB Доставка',
+        'russianpost': 'Почта РФ'
+    }
+    
+    payment_names = {
+        'card': 'Банковская карта',
+        'sbp': 'СБП'
+    }
+    
     if notification_type == 'new_order':
+        delivery_name = delivery_names.get(order_data.get('deliveryMethod', ''), order_data.get('deliveryMethod', 'N/A'))
+        payment_name = payment_names.get(order_data.get('paymentMethod', 'card'), 'Банковская карта')
+        
         message = f"""
 🛒 <b>Новый заказ #{order_data['orderId']}</b>
 
-👤 <b>ФИО:</b> {order_data['fullName']}
+📦 <b>Товар:</b> Магний Хелат + Витамин В6
+🔢 <b>Количество:</b> {order_data['quantity']} шт
+💰 <b>Сумма:</b> {order_data['totalPrice']} ₽
+
+👤 <b>Клиент:</b> {order_data['fullName']}
 📞 <b>Телефон:</b> {order_data['phone']}
 📧 <b>Email:</b> {order_data['email']}
+
 📍 <b>Адрес:</b> {order_data['address']}
-🚚 <b>Доставка:</b> {order_data['deliveryMethod']}
-💳 <b>Оплата:</b> {order_data['paymentMethod']}
-📦 <b>Количество:</b> {order_data['quantity']} шт
-💰 <b>Сумма:</b> {order_data['totalPrice']} ₽
+🚚 <b>Доставка:</b> {delivery_name}
+💳 <b>Способ оплаты:</b> {payment_name}
         """
     else:
         message = f"""
 ✅ <b>Заказ оплачен #{order_data['orderId']}</b>
 
-👤 <b>ФИО:</b> {order_data.get('fullName', 'N/A')}
-📧 <b>Email:</b> {order_data.get('email', 'N/A')}
+📦 <b>Товар:</b> Магний Хелат + Витамин В6
 💰 <b>Сумма:</b> {order_data['totalPrice']} ₽
+
+👤 <b>Клиент:</b> {order_data.get('fullName', 'N/A')}
+📧 <b>Email:</b> {order_data.get('email', 'N/A')}
         """
     
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
