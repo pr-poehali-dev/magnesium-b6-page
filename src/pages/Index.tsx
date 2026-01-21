@@ -30,9 +30,9 @@ const Index = () => {
 
   const orderSchema = z.object({
     fullName: z.string().min(1, 'Введите ФИО'),
-    phone: z.string().regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите корректный номер телефона'),
+    phone: z.string().min(10, 'Введите номер телефона'),
     email: z.string().email('Введите корректный email'),
-    address: z.string().min(10, 'Введите полный адрес'),
+    address: z.string().min(5, 'Введите адрес'),
     deliveryMethod: z.string().min(1, 'Выберите службу доставки'),
     paymentMethod: z.string(),
     quantity: z.number().min(1).max(10)
@@ -55,8 +55,7 @@ const Index = () => {
 
   const orderForm = watch();
 
-  const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
+
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -75,35 +74,8 @@ const Index = () => {
 
   const scrollTo = (index: number) => emblaApi?.scrollTo(index);
 
-  const handleAddressChange = async (value: string) => {
-    setValue('address', value);
-    
-    if (value.length < 3) {
-      setShowSuggestions(false);
-      return;
-    }
-
-    try {
-      const response = await fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Token d1e2d0f8e1f8e1a3c8b8e1f8e1a3c8b8e1f8e1a3'
-        },
-        body: JSON.stringify({ query: value, count: 5 })
-      });
-      const data = await response.json();
-      setAddressSuggestions(data.suggestions || []);
-      setShowSuggestions(true);
-    } catch (error) {
-      console.error('DaData error:', error);
-      setShowSuggestions(false);
-    }
-  };
-
-  const selectAddress = (suggestion: any) => {
-    setValue('address', suggestion.value);
-    setShowSuggestions(false);
+  const handleAddressChange = (value: string) => {
+    setValue('address', value, { shouldValidate: true });
   };
 
   const onSubmit = async (data: OrderFormData) => {
@@ -553,7 +525,7 @@ const Index = () => {
                   <InputMask
                     mask="+7 (999) 999-99-99"
                     value={orderForm.phone}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue('phone', e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue('phone', e.target.value, { shouldValidate: true })}
                   >
                     {(inputProps: any) => (
                       <Input
@@ -596,30 +568,13 @@ const Index = () => {
                 {errors.address && (
                   <p className="text-sm text-red-500 mt-1">{errors.address.message}</p>
                 )}
-                {showSuggestions && addressSuggestions.length > 0 && (
-                  <div className="absolute z-10 w-full bg-white border border-border rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
-                    {addressSuggestions.map((suggestion, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        className="w-full text-left px-4 py-3 hover:bg-[#E8F4F8] transition-colors border-b last:border-b-0"
-                        onClick={() => selectAddress(suggestion)}
-                      >
-                        <p className="font-medium">{suggestion.value}</p>
-                        {suggestion.data.postal_code && (
-                          <p className="text-sm text-muted-foreground">Индекс: {suggestion.data.postal_code}</p>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                )}
               </div>
 
               <div>
                 <Label htmlFor="deliveryMethod">Служба доставки *</Label>
                 <Select 
                   value={orderForm.deliveryMethod} 
-                  onValueChange={(value) => setValue('deliveryMethod', value)}
+                  onValueChange={(value) => setValue('deliveryMethod', value, { shouldValidate: true })}
                 >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Выберите службу доставки" />
