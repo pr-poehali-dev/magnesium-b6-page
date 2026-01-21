@@ -79,7 +79,9 @@ const ProductInfo = () => {
 
       <section className="py-20 px-4 bg-card">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">Преимущества продукта</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">
+            <span itemProp="name">Преимущества Магния Хелат + Витамин В6</span>
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { icon: 'Zap', title: 'Снижает усталость', desc: 'Клинически доказано снижение усталости на 82% за 30 дней приёма' },

@@ -92,6 +92,9 @@ const HeroSection = () => {
                     src={src} 
                     alt={`Магний Хелат + Витамин В6 ${index + 1}`}
                     className="w-full h-auto"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    width="800"
+                    height="600"
                   />
                 </div>
               ))}
