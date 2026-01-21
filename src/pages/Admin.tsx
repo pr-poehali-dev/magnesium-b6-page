@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
+import { useToast } from '@/hooks/use-toast';
 import {
   Table,
   TableBody,
@@ -35,14 +38,64 @@ interface Order {
 }
 
 const Admin = () => {
+  const { toast } = useToast();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
   const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
-    fetchOrders();
+    const savedAuth = sessionStorage.getItem('admin_auth');
+    if (savedAuth === 'true') {
+      setIsAuthenticated(true);
+      fetchOrders();
+    }
   }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch('https://functions.poehali.dev/4df9a0f0-987a-4e07-9b2f-bf9d2057dfce?action=auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      const data = await response.json();
+
+      if (data.authenticated) {
+        setIsAuthenticated(true);
+        sessionStorage.setItem('admin_auth', 'true');
+        fetchOrders();
+        toast({
+          title: "Успешно",
+          description: "Добро пожаловать в админ-панель",
+        });
+      } else {
+        toast({
+          title: "Ошибка",
+          description: "Неверный пароль",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось проверить пароль",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('admin_auth');
+    setPassword('');
+    setOrders([]);
+  };
 
   const fetchOrders = async () => {
     try {
@@ -93,6 +146,45 @@ const Admin = () => {
     russianpost: 'Почта РФ'
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#E8F4F8] to-white flex items-center justify-center p-4">
+        <Card className="w-full max-w-md shadow-2xl border-2 border-[#339edc]">
+          <CardHeader className="text-center">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#5BC0DE] to-[#339edc] rounded-lg flex items-center justify-center mx-auto mb-4">
+              <Icon name="Lock" className="text-white" size={32} />
+            </div>
+            <CardTitle className="text-2xl">Вход в админ-панель</CardTitle>
+            <p className="text-muted-foreground mt-2">Введите пароль для доступа</p>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <Label htmlFor="password">Пароль</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Введите пароль"
+                  className="mt-2"
+                  autoFocus
+                />
+              </div>
+              <Button 
+                type="submit" 
+                className="w-full bg-[#339edc] hover:bg-[#2889c4]"
+              >
+                <Icon name="LogIn" size={18} className="mr-2" />
+                Войти
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#E8F4F8] to-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
@@ -106,10 +198,16 @@ const Admin = () => {
               <p className="text-muted-foreground">Управление заказами</p>
             </div>
           </div>
-          <Button onClick={fetchOrders} className="bg-[#339edc] hover:bg-[#2889c4]">
-            <Icon name="RefreshCw" size={18} className="mr-2" />
-            Обновить
-          </Button>
+          <div className="flex gap-2">
+            <Button onClick={fetchOrders} className="bg-[#339edc] hover:bg-[#2889c4]">
+              <Icon name="RefreshCw" size={18} className="mr-2" />
+              Обновить
+            </Button>
+            <Button onClick={handleLogout} variant="outline">
+              <Icon name="LogOut" size={18} className="mr-2" />
+              Выйти
+            </Button>
+          </div>
         </div>
 
         <Card className="shadow-xl">

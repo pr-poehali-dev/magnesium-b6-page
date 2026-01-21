@@ -79,6 +79,13 @@ def handler(event: dict, context) -> dict:
                 'body': json.dumps({'suggestions': suggestions})
             }
         
+        if query_params.get('action') == 'auth':
+            return {
+                'statusCode': 405,
+                'headers': {'Access-Control-Allow-Origin': '*'},
+                'body': json.dumps({'error': 'Use POST for authentication'})
+            }
+        
         try:
             orders = get_all_orders()
             return {
@@ -98,6 +105,30 @@ def handler(event: dict, context) -> dict:
 
     if method == 'POST':
         body = json.loads(event.get('body', '{}'))
+        query_params = event.get('queryStringParameters', {}) or {}
+        
+        if query_params.get('action') == 'auth':
+            password = body.get('password', '')
+            admin_password = os.environ.get('ADMIN_PASSWORD', '')
+            
+            if admin_password and password == admin_password:
+                return {
+                    'statusCode': 200,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': json.dumps({'authenticated': True})
+                }
+            else:
+                return {
+                    'statusCode': 200,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'body': json.dumps({'authenticated': False})
+                }
         
         full_name = body.get('fullName', '')
         phone = body.get('phone', '')
