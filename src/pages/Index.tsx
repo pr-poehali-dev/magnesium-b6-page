@@ -230,9 +230,7 @@ const Index = () => {
                     <Icon name="Calendar" className="text-white" size={32} />
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-center">Свежая партия</h3>
-                  <p className="text-white/90 text-center">
-                    Прямые поставки. Срок годности максимальный — продукт произведен в этом месяце
-                  </p>
+                  <p className="text-white/90 text-center">Прямые поставки. Свежий срок годности!</p>
                 </div>
 
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
