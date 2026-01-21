@@ -10,6 +10,10 @@ import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 import useEmblaCarousel from 'embla-carousel-react';
+import InputMask from 'react-input-mask';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 
 const Index = () => {
   const { toast } = useToast();
@@ -24,15 +28,32 @@ const Index = () => {
     'https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/5.png',
   ];
 
-  const [orderForm, setOrderForm] = useState({
-    fullName: '',
-    phone: '',
-    email: '',
-    address: '',
-    deliveryMethod: '',
-    paymentMethod: 'card',
-    quantity: 1
+  const orderSchema = z.object({
+    fullName: z.string().min(1, 'Введите ФИО'),
+    phone: z.string().regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите корректный номер телефона'),
+    email: z.string().email('Введите корректный email'),
+    address: z.string().min(10, 'Введите полный адрес'),
+    deliveryMethod: z.string().min(1, 'Выберите службу доставки'),
+    paymentMethod: z.string(),
+    quantity: z.number().min(1).max(10)
   });
+
+  type OrderFormData = z.infer<typeof orderSchema>;
+
+  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<OrderFormData>({
+    resolver: zodResolver(orderSchema),
+    defaultValues: {
+      fullName: '',
+      phone: '',
+      email: '',
+      address: '',
+      deliveryMethod: '',
+      paymentMethod: 'card',
+      quantity: 1
+    }
+  });
+
+  const orderForm = watch();
 
   const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -55,35 +76,48 @@ const Index = () => {
   const scrollTo = (index: number) => emblaApi?.scrollTo(index);
 
   const handleAddressChange = async (value: string) => {
-    setOrderForm({ ...orderForm, address: value });
+    setValue('address', value);
     
     if (value.length < 3) {
       setShowSuggestions(false);
       return;
     }
 
-    setShowSuggestions(false);
+    try {
+      const response = await fetch('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Token d1e2d0f8e1f8e1a3c8b8e1f8e1a3c8b8e1f8e1a3'
+        },
+        body: JSON.stringify({ query: value, count: 5 })
+      });
+      const data = await response.json();
+      setAddressSuggestions(data.suggestions || []);
+      setShowSuggestions(true);
+    } catch (error) {
+      console.error('DaData error:', error);
+      setShowSuggestions(false);
+    }
   };
 
   const selectAddress = (suggestion: any) => {
-    setOrderForm({ ...orderForm, address: suggestion.value });
+    setValue('address', suggestion.value);
     setShowSuggestions(false);
   };
 
-  const handleOrderSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: OrderFormData) => {
     try {
-      const response = await fetch('https://functions.poehali.dev/cdeed1f5-93df-4541-994e-cf7929bbca4b', {
+      const response = await fetch('https://functions.poehali.dev/4df9a0f0-987a-4e07-9b2f-bf9d2057dfce', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderForm)
+        body: JSON.stringify(data)
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
-      if (data.paymentUrl) {
-        window.location.href = data.paymentUrl;
+      if (result.paymentUrl) {
+        window.location.href = result.paymentUrl;
       }
     } catch (error) {
       toast({
@@ -499,31 +533,41 @@ const Index = () => {
               Заполните форму, и мы свяжемся с вами для подтверждения
             </p>
             
-            <form onSubmit={handleOrderSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div>
                 <Label htmlFor="fullName">ФИО *</Label>
                 <Input
                   id="fullName"
                   placeholder="Иванов Иван Иванович"
-                  value={orderForm.fullName}
-                  onChange={(e) => setOrderForm({ ...orderForm, fullName: e.target.value })}
-                  required
+                  {...register('fullName')}
                   className="mt-2"
                 />
+                {errors.fullName && (
+                  <p className="text-sm text-red-500 mt-1">{errors.fullName.message}</p>
+                )}
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="phone">Телефон *</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+7 (900) 123-45-67"
+                  <InputMask
+                    mask="+7 (999) 999-99-99"
                     value={orderForm.phone}
-                    onChange={(e) => setOrderForm({ ...orderForm, phone: e.target.value })}
-                    required
-                    className="mt-2"
-                  />
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue('phone', e.target.value)}
+                  >
+                    {(inputProps: any) => (
+                      <Input
+                        {...inputProps}
+                        id="phone"
+                        type="tel"
+                        placeholder="+7 (900) 123-45-67"
+                        className="mt-2"
+                      />
+                    )}
+                  </InputMask>
+                  {errors.phone && (
+                    <p className="text-sm text-red-500 mt-1">{errors.phone.message}</p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="email">Email *</Label>
@@ -531,11 +575,12 @@ const Index = () => {
                     id="email"
                     type="email"
                     placeholder="example@mail.ru"
-                    value={orderForm.email}
-                    onChange={(e) => setOrderForm({ ...orderForm, email: e.target.value })}
-                    required
+                    {...register('email')}
                     className="mt-2"
                   />
+                  {errors.email && (
+                    <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                  )}
                 </div>
               </div>
 
@@ -546,9 +591,11 @@ const Index = () => {
                   placeholder="Город, улица, дом, квартира"
                   value={orderForm.address}
                   onChange={(e) => handleAddressChange(e.target.value)}
-                  required
                   className="mt-2"
                 />
+                {errors.address && (
+                  <p className="text-sm text-red-500 mt-1">{errors.address.message}</p>
+                )}
                 {showSuggestions && addressSuggestions.length > 0 && (
                   <div className="absolute z-10 w-full bg-white border border-border rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
                     {addressSuggestions.map((suggestion, idx) => (
@@ -572,8 +619,7 @@ const Index = () => {
                 <Label htmlFor="deliveryMethod">Служба доставки *</Label>
                 <Select 
                   value={orderForm.deliveryMethod} 
-                  onValueChange={(value) => setOrderForm({ ...orderForm, deliveryMethod: value })}
-                  required
+                  onValueChange={(value) => setValue('deliveryMethod', value)}
                 >
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Выберите службу доставки" />
@@ -586,13 +632,16 @@ const Index = () => {
                     <SelectItem value="russianpost">Почта РФ</SelectItem>
                   </SelectContent>
                 </Select>
+                {errors.deliveryMethod && (
+                  <p className="text-sm text-red-500 mt-1">{errors.deliveryMethod.message}</p>
+                )}
               </div>
 
               <div>
                 <Label>Способ оплаты *</Label>
                 <RadioGroup 
                   value={orderForm.paymentMethod} 
-                  onValueChange={(value) => setOrderForm({ ...orderForm, paymentMethod: value })}
+                  onValueChange={(value) => setValue('paymentMethod', value)}
                   className="mt-2 space-y-3"
                 >
                   <div className="flex items-center space-x-2 border border-border rounded-lg p-4 hover:bg-[#E8F4F8] transition-colors cursor-pointer">
@@ -627,7 +676,7 @@ const Index = () => {
                     min="1"
                     max="10"
                     value={orderForm.quantity}
-                    onChange={(e) => setOrderForm({ ...orderForm, quantity: parseInt(e.target.value) || 1 })}
+                    onChange={(e) => setValue('quantity', parseInt(e.target.value) || 1)}
                     className="w-20"
                   />
                 </div>

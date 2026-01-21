@@ -1,0 +1,33 @@
+{
+  "tests": [
+    {
+      "name": "Test OPTIONS request for CORS",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": "",
+      "bodyMatcher": "exact"
+    },
+    {
+      "name": "Test order creation",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "fullName": "Иванов Иван Иванович",
+        "phone": "+7 (900) 123-45-67",
+        "email": "test@example.com",
+        "address": "Москва, ул. Ленина, д. 1, кв. 1",
+        "deliveryMethod": "cdek",
+        "paymentMethod": "card",
+        "quantity": 1
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "orderId": "string",
+        "paymentUrl": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
