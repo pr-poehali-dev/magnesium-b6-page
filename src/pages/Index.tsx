@@ -102,21 +102,34 @@ const Index = () => {
 
   const onSubmit = async (data: OrderFormData) => {
     try {
+      console.log('Отправка заказа:', data);
+      
       const response = await fetch('https://functions.poehali.dev/4df9a0f0-987a-4e07-9b2f-bf9d2057dfce', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
 
+      console.log('Response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
       const result = await response.json();
+      console.log('Response data:', result);
 
       if (result.paymentUrl) {
+        console.log('Редирект на:', result.paymentUrl);
         window.location.href = result.paymentUrl;
+      } else {
+        throw new Error('Не получен URL оплаты');
       }
     } catch (error) {
+      console.error('Ошибка заказа:', error);
       toast({
         title: "Ошибка",
-        description: "Не удалось оформить заказ. Попробуйте позже.",
+        description: error instanceof Error ? error.message : "Не удалось оформить заказ. Попробуйте позже.",
         variant: "destructive"
       });
     }
