@@ -135,7 +135,7 @@ const Index = () => {
     }
   };
 
-  const totalPrice = 1 * orderForm.quantity;
+  const totalPrice = 1230 * orderForm.quantity;
 
   return (
     <div className="min-h-screen">
@@ -167,8 +167,8 @@ const Index = () => {
             <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-2xl mb-6 shadow-lg">
               <div className="flex items-baseline gap-3 mb-2">
                 <span className="text-sm font-semibold bg-white text-red-600 px-3 py-1 rounded-full">АКЦИЯ</span>
-                <span className="text-4xl font-bold">1 ₽</span>
-                <span className="text-xl line-through opacity-75">1 230 ₽</span>
+                <span className="text-4xl font-bold">1 230 ₽</span>
+                <span className="text-xl line-through opacity-75">1 999 ₽</span>
               </div>
               <p className="text-lg font-semibold flex items-center gap-2 mt-3">
                 <Icon name="Truck" size={24} />
@@ -693,7 +693,7 @@ const Index = () => {
                     <span className="text-3xl font-bold text-[#339edc]">{totalPrice.toLocaleString()} ₽</span>
                     {orderForm.quantity > 1 && (
                       <p className="text-sm text-muted-foreground">
-                        {orderForm.quantity} шт × 1 ₽
+                        {orderForm.quantity} шт × 1 230 ₽
                       </p>
                     )}
                   </div>

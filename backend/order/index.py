@@ -107,7 +107,7 @@ def handler(event: dict, context) -> dict:
         payment_method = body.get('paymentMethod', 'card')
         quantity = body.get('quantity', 1)
         
-        total_price = 1 * quantity
+        total_price = 1230 * quantity
         order_id = str(uuid.uuid4())[:8]
         
         order_data = {
