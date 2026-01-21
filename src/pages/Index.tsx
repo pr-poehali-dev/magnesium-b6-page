@@ -342,7 +342,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Магний на капсулу:</span>
-                  <span className="text-[#339edc] font-bold">400 мг</span>
+                  <span className="text-[#339edc] font-bold">416 мг</span>
                 </div>
               </CardContent>
             </Card>
@@ -350,7 +350,7 @@ const Index = () => {
               <CardContent className="pt-6">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-semibold">Витамин В6:</span>
-                  <span className="text-[#339edc] font-bold">10 мг</span>
+                  <span className="text-[#339edc] font-bold">6 мг</span>
                 </div>
               </CardContent>
             </Card>
