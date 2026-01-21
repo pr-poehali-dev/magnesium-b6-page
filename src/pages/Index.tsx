@@ -40,8 +40,9 @@ const Index = () => {
 
   type OrderFormData = z.infer<typeof orderSchema>;
 
-  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<OrderFormData>({
+  const { register, handleSubmit, formState: { errors, isSubmitting }, setValue, watch } = useForm<OrderFormData>({
     resolver: zodResolver(orderSchema),
+    mode: 'onSubmit',
     defaultValues: {
       fullName: '',
       phone: '',
@@ -688,9 +689,10 @@ const Index = () => {
 
               <Button 
                 type="submit" 
-                className="w-full bg-[#339edc] hover:bg-[#2889c4] text-white text-xl py-8"
+                disabled={isSubmitting}
+                className="w-full bg-[#339edc] hover:bg-[#2889c4] text-white text-xl py-8 disabled:opacity-50"
               >
-                Перейти к оплате
+                {isSubmitting ? 'Обработка...' : 'Перейти к оплате'}
               </Button>
 
               <p className="text-sm text-muted-foreground text-center">
