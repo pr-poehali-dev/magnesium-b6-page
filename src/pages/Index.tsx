@@ -55,7 +55,8 @@ const Index = () => {
 
   const orderForm = watch();
 
-
+  const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -74,8 +75,28 @@ const Index = () => {
 
   const scrollTo = (index: number) => emblaApi?.scrollTo(index);
 
-  const handleAddressChange = (value: string) => {
+  const handleAddressChange = async (value: string) => {
     setValue('address', value, { shouldValidate: true });
+    
+    if (value.length < 3) {
+      setShowSuggestions(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://functions.poehali.dev/4df9a0f0-987a-4e07-9b2f-bf9d2057dfce?action=address&query=${encodeURIComponent(value)}`);
+      const data = await response.json();
+      setAddressSuggestions(data.suggestions || []);
+      setShowSuggestions(data.suggestions && data.suggestions.length > 0);
+    } catch (error) {
+      console.error('Address suggestions error:', error);
+      setShowSuggestions(false);
+    }
+  };
+
+  const selectAddress = (suggestion: any) => {
+    setValue('address', suggestion.value, { shouldValidate: true });
+    setShowSuggestions(false);
   };
 
   const onSubmit = async (data: OrderFormData) => {
@@ -567,6 +588,23 @@ const Index = () => {
                 />
                 {errors.address && (
                   <p className="text-sm text-red-500 mt-1">{errors.address.message}</p>
+                )}
+                {showSuggestions && addressSuggestions.length > 0 && (
+                  <div className="absolute z-10 w-full bg-white border border-border rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+                    {addressSuggestions.map((suggestion, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        className="w-full text-left px-4 py-3 hover:bg-[#E8F4F8] transition-colors border-b last:border-b-0"
+                        onClick={() => selectAddress(suggestion)}
+                      >
+                        <p className="font-medium">{suggestion.value}</p>
+                        {suggestion.data?.postal_code && (
+                          <p className="text-sm text-muted-foreground">Индекс: {suggestion.data.postal_code}</p>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
 

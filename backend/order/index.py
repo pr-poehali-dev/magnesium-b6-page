@@ -61,6 +61,20 @@ def handler(event: dict, context) -> dict:
         }
 
     if method == 'GET':
+        query_params = event.get('queryStringParameters', {}) or {}
+        
+        if query_params.get('action') == 'address':
+            query = query_params.get('query', '')
+            suggestions = get_address_suggestions(query)
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'body': json.dumps({'suggestions': suggestions})
+            }
+        
         try:
             orders = get_all_orders()
             return {
@@ -234,6 +248,37 @@ def send_telegram_notification(order_data: dict, notification_type: str):
             response.read()
     except Exception as e:
         print(f"Telegram error: {e}")
+
+
+def get_address_suggestions(query: str):
+    """Получение подсказок адресов из DaData"""
+    if len(query) < 3:
+        return []
+    
+    api_token = os.environ.get('DADATA_API_TOKEN')
+    
+    if not api_token:
+        return []
+    
+    try:
+        url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
+        
+        req = Request(
+            url,
+            data=json.dumps({'query': query, 'count': 5}).encode('utf-8'),
+            headers={
+                'Content-Type': 'application/json',
+                'Authorization': f'Token {api_token}'
+            },
+            method='POST'
+        )
+        
+        with urlopen(req) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            return data.get('suggestions', [])
+    except Exception as e:
+        print(f"DaData error: {e}")
+        return []
 
 
 def get_all_orders():
