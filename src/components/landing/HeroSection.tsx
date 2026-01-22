@@ -35,6 +35,17 @@ const HeroSection = () => {
 
   return (
     <section className="relative bg-gradient-to-br from-[#E8F4F8] via-white to-[#D4EAF2] py-16 px-4">
+      <div className="max-w-7xl mx-auto mb-6">
+        <a 
+          href="https://t.me/badpoehalibot" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-[#339edc] hover:bg-[#2889c4] text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+        >
+          <Icon name="MessageCircle" size={20} />
+          Консультация и поддержка
+        </a>
+      </div>
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <div className="animate-fade-in">
           <Badge className="mb-4 bg-[#339edc] text-white hover:bg-[#2889c4]">
