@@ -43,7 +43,7 @@ const HeroSection = () => {
           className="inline-flex items-center gap-2 bg-[#339edc] hover:bg-[#2889c4] text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
         >
           <Icon name="MessageCircle" size={20} />
-          Консультация и поддержка
+          Написать в Telegram
         </a>
       </div>
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">

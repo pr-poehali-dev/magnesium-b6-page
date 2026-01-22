@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Success from "./pages/Success";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+import FloatingTelegramButton from "./components/FloatingTelegramButton";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <FloatingTelegramButton />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
