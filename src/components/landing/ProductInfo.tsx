@@ -169,21 +169,39 @@ const ProductInfo = () => {
           </p>
           <div className="space-y-4">
             <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
-              <h4 className="font-bold mb-2 text-lg">🌿 Магний бисглицинат (хелат) — 400 мг</h4>
-              <p className="text-muted-foreground">Наиболее биодоступная форма магния с органическими молекулами аминокислот</p>
+              <div className="flex items-start gap-3">
+                <Icon name="Leaf" className="text-[#339edc] mt-1 flex-shrink-0" size={24} />
+                <div>
+                  <h4 className="font-bold mb-2 text-lg">Магний бисглицинат (хелат) — 400 мг</h4>
+                  <p className="text-muted-foreground">Наиболее биодоступная форма магния с органическими молекулами аминокислот</p>
+                </div>
+              </div>
             </div>
             <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
-              <h4 className="font-bold mb-2 text-lg">💊 Пиридоксин (Витамин В6) — 10 мг</h4>
-              <p className="text-muted-foreground">Усиливает усвоение магния и участвует в энергетическом обмене</p>
+              <div className="flex items-start gap-3">
+                <Icon name="Pill" className="text-[#339edc] mt-1 flex-shrink-0" size={24} />
+                <div>
+                  <h4 className="font-bold mb-2 text-lg">Пиридоксин (Витамин В6) — 10 мг</h4>
+                  <p className="text-muted-foreground">Усиливает усвоение магния и участвует в энергетическом обмене</p>
+                </div>
+              </div>
             </div>
             <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
-              <h4 className="font-bold mb-2 text-lg">🌾 Растительная капсула (целлюлоза)</h4>
-              <p className="text-muted-foreground">Гипоаллергенная оболочка из целлюлозы, подходит для вегетарианцев</p>
+              <div className="flex items-start gap-3">
+                <Icon name="Wheat" className="text-[#339edc] mt-1 flex-shrink-0" size={24} />
+                <div>
+                  <h4 className="font-bold mb-2 text-lg">Растительная капсула (целлюлоза)</h4>
+                  <p className="text-muted-foreground">Гипоаллергенная оболочка из целлюлозы, подходит для вегетарианцев</p>
+                </div>
+              </div>
             </div>
             <div className="bg-gradient-to-r from-[#339edc]/20 to-[#5BC0DE]/20 p-4 rounded-lg border-2 border-[#339edc]">
-              <p className="text-sm font-semibold text-center">
-                ✓ Без ГМО • Без глютена • Без сои • Без лактозы
-              </p>
+              <div className="flex items-center justify-center gap-2">
+                <Icon name="ShieldCheck" className="text-[#339edc]" size={20} />
+                <p className="text-sm font-semibold text-center">
+                  Без ГМО • Без глютена • Без сои • Без лактозы
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -200,7 +218,9 @@ const ProductInfo = () => {
                 <p className="text-muted-foreground">Порция 4 капсулы в день</p>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-[#339edc] mb-4">⏰</div>
+                <div className="flex justify-center mb-4">
+                  <Icon name="Clock" className="text-[#339edc]" size={56} />
+                </div>
                 <h3 className="text-xl font-bold mb-2">Время приема</h3>
                 <p className="text-muted-foreground">Утром и вечером во время еды</p>
               </div>
@@ -211,7 +231,10 @@ const ProductInfo = () => {
               </div>
             </div>
 
-            <h3 className="text-2xl font-bold mb-4 text-center">💡 Важные рекомендации</h3>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Icon name="Lightbulb" className="text-[#339edc]" size={28} />
+              <h3 className="text-2xl font-bold text-center">Важные рекомендации</h3>
+            </div>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Icon name="CheckCircle" className="text-[#339edc] mt-1 flex-shrink-0" size={20} />
