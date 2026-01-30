@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import useEmblaCarousel from 'embla-carousel-react';
 
@@ -57,6 +58,36 @@ const HeroSection = () => {
           <p className="text-xl text-muted-foreground mb-6">
             Премиальная форма магния с максимальной биодоступностью 95%
           </p>
+
+          <Card className="border-[#f4e925]/30 bg-gradient-to-br from-white to-[#fffef0] shadow-lg mb-6">
+            <CardContent className="pt-4 pb-4">
+              <div className="flex items-center gap-4">
+                <div className="flex-shrink-0">
+                  <img 
+                    src="https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/be92222f-c9d8-4619-b5da-59935c75bb7d.png" 
+                    alt="Честный ЗНАК" 
+                    className="h-16 w-auto"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold mb-1 text-gray-800">
+                    Маркировка «Честный ЗНАК»
+                  </h3>
+                  <p className="text-xs text-gray-600">
+                    Каждая упаковка имеет уникальный код для проверки подлинности. Проверьте на{' '}
+                    <a 
+                      href="https://честныйзнак.рф" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[#339edc] hover:underline font-semibold"
+                    >
+                      честныйзнак.рф
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-2xl mb-6 shadow-lg">
             <div className="flex items-baseline gap-3 mb-2">

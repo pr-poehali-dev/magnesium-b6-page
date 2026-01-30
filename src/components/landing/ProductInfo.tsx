@@ -158,42 +158,6 @@ const ProductInfo = () => {
               </CardContent>
             </Card>
           </div>
-
-          {/* Честный ЗНАК */}
-          <div className="mt-12 max-w-3xl mx-auto">
-            <Card className="border-[#f4e925]/30 bg-gradient-to-br from-white to-[#fffef0] shadow-lg">
-              <CardContent className="pt-6">
-                <div className="flex flex-col md:flex-row items-center gap-6">
-                  <div className="flex-shrink-0">
-                    <img 
-                      src="https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/be92222f-c9d8-4619-b5da-59935c75bb7d.png" 
-                      alt="Честный ЗНАК" 
-                      className="h-20 w-auto"
-                    />
-                  </div>
-                  <div className="text-center md:text-left">
-                    <h3 className="text-xl font-bold mb-2 text-gray-800">
-                      Маркировка «Честный ЗНАК»
-                    </h3>
-                    <p className="text-gray-700 mb-2">
-                      Каждая упаковка имеет уникальный код для проверки подлинности.
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Проверьте товар в приложении «Честный ЗНАК» или на сайте{' '}
-                      <a 
-                        href="https://честныйзнак.рф" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-[#339edc] hover:underline font-semibold"
-                      >
-                        честныйзнак.рф
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </section>
 
