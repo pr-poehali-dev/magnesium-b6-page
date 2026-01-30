@@ -8,6 +8,29 @@ import useEmblaCarousel from 'embla-carousel-react';
 const HeroSection = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const endTime = Date.now() + 24 * 60 * 60 * 1000;
+    
+    const updateTimer = () => {
+      const now = Date.now();
+      const difference = endTime - now;
+      
+      if (difference > 0) {
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        
+        setTimeLeft({ hours, minutes, seconds });
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const carouselImages = [
     'https://cdn.poehali.dev/projects/9a2d0943-7c49-4501-bb48-2ed61a00471a/bucket/1.png',
@@ -95,7 +118,29 @@ const HeroSection = () => {
               <span className="text-3xl md:text-4xl font-bold">1 230 ₽</span>
               <span className="text-lg md:text-xl line-through opacity-75">1 999 ₽</span>
             </div>
-            <p className="text-sm md:text-base lg:text-lg font-semibold flex items-center gap-2 mt-3">
+            
+            <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 md:p-4 mt-3 mb-3">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Icon name="Clock" size={18} />
+                <span className="text-xs md:text-sm font-semibold">До конца акции осталось:</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 md:gap-3">
+                <div className="bg-white/30 rounded-lg p-2 text-center">
+                  <div className="text-2xl md:text-3xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
+                  <div className="text-[10px] md:text-xs opacity-90">часов</div>
+                </div>
+                <div className="bg-white/30 rounded-lg p-2 text-center">
+                  <div className="text-2xl md:text-3xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
+                  <div className="text-[10px] md:text-xs opacity-90">минут</div>
+                </div>
+                <div className="bg-white/30 rounded-lg p-2 text-center">
+                  <div className="text-2xl md:text-3xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</div>
+                  <div className="text-[10px] md:text-xs opacity-90">секунд</div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-sm md:text-base lg:text-lg font-semibold flex items-center gap-2">
               <Icon name="Truck" size={24} />
               Бесплатная доставка по всей РФ!
             </p>
