@@ -317,17 +317,23 @@ const ProductInfo = () => {
           <h2 className="text-4xl font-bold mb-6">Почему выбирают PharmExpert?</h2>
           <div className="grid md:grid-cols-3 gap-8 mt-12">
             <div>
-              <div className="text-5xl mb-4">🏆</div>
+              <div className="flex justify-center mb-4">
+                <Icon name="Award" className="text-white" size={56} />
+              </div>
               <h3 className="text-xl font-bold mb-2">Высокое качество</h3>
               <p className="opacity-90">Сертификаты GMP и ISO, строгий контроль производства</p>
             </div>
             <div>
-              <div className="text-5xl mb-4">🚚</div>
+              <div className="flex justify-center mb-4">
+                <Icon name="Truck" className="text-white" size={56} />
+              </div>
               <h3 className="text-xl font-bold mb-2">Быстрая доставка</h3>
               <p className="opacity-90">Бесплатная доставка по всей России за 2-7 дней</p>
             </div>
             <div>
-              <div className="text-5xl mb-4">💰</div>
+              <div className="flex justify-center mb-4">
+                <Icon name="BadgePercent" className="text-white" size={56} />
+              </div>
               <h3 className="text-xl font-bold mb-2">Лучшие цены</h3>
               <p className="opacity-90">Работаем напрямую с производителем без наценок</p>
             </div>
