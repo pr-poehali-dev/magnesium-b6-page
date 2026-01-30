@@ -10,7 +10,7 @@ const Header = () => {
           </div>
           <h1 className="text-2xl font-bold text-[#339edc]">PharmExpert</h1>
         </div>
-        <p className="text-2xl font-bold text-[#339edc] hidden md:block">Экспертный подход к вашему здоровью</p>
+        <p className="text-sm md:text-xl lg:text-2xl font-bold text-[#339edc]">Экспертный подход к вашему здоровью</p>
       </div>
     </header>
   );
