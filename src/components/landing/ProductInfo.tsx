@@ -7,66 +7,66 @@ import Icon from '@/components/ui/icon';
 const ProductInfo = () => {
   return (
     <>
-      <section className="py-16 px-4 bg-white">
+      <section className="py-8 md:py-12 lg:py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-br from-[#339edc] to-[#2889c4] rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#339edc] to-[#2889c4] rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
             
             <div className="relative z-10">
-              <div className="text-center mb-8">
-                <Badge className="mb-4 bg-white/20 text-white hover:bg-white/30 text-lg px-6 py-2">
+              <div className="text-center mb-6 md:mb-8">
+                <Badge className="mb-3 md:mb-4 bg-white/20 text-white hover:bg-white/30 text-sm md:text-base lg:text-lg px-4 md:px-6 py-1.5 md:py-2">
                   Покупайте напрямую у производителя
                 </Badge>
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 md:mb-4 leading-tight">
                   Почему выгоднее покупать у нас, а не на маркетплейсах?
                 </h2>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
-                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <Icon name="TrendingDown" className="text-white" size={32} />
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
+                    <Icon name="TrendingDown" className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-center">Цена ниже на 40%</h3>
-                  <p className="text-white/90 text-center">
+                  <h3 className="text-base md:text-lg lg:text-xl font-bold mb-2 text-center">Цена ниже на 40%</h3>
+                  <p className="text-sm md:text-base text-white/90 text-center">
                     Без наценки маркетплейсов. У нас 1 230 ₽, на WB/Ozon — 1 999 ₽
                   </p>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
-                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <Icon name="Shield" className="text-white" size={32} />
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
+                    <Icon name="Shield" className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-center">100% оригинал</h3>
-                  <p className="text-white/90 text-center">
+                  <h3 className="text-base md:text-lg lg:text-xl font-bold mb-2 text-center">100% оригинал</h3>
+                  <p className="text-sm md:text-base text-white/90 text-center">
                     Гарантия подлинности от производителя. Никаких подделок и пересортицы
                   </p>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
-                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <Icon name="Calendar" className="text-white" size={32} />
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
+                    <Icon name="Calendar" className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-center">Свежая партия</h3>
-                  <p className="text-white/90 text-center">Прямые поставки. Свежий срок годности!</p>
+                  <h3 className="text-base md:text-lg lg:text-xl font-bold mb-2 text-center">Свежая партия</h3>
+                  <p className="text-sm md:text-base text-white/90 text-center">Прямые поставки. Свежий срок годности!</p>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all">
-                  <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <Icon name="Headphones" className="text-white" size={32} />
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/20 hover:bg-white/15 transition-all">
+                  <div className="bg-white/20 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
+                    <Icon name="Headphones" className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-center">Прямая поддержка</h3>
-                  <p className="text-white/90 text-center">
+                  <h3 className="text-base md:text-lg lg:text-xl font-bold mb-2 text-center">Прямая поддержка</h3>
+                  <p className="text-sm md:text-base text-white/90 text-center">
                     Консультация от производителя. Ответим на вопросы о применении и совместимости
                   </p>
                 </div>
               </div>
 
-              <div className="mt-8 text-center">
+              <div className="mt-6 md:mt-8 text-center">
                 <Button 
                   size="lg" 
-                  className="bg-white text-[#339edc] hover:bg-white/90 text-xl px-12 py-6 font-bold shadow-xl"
+                  className="bg-white text-[#339edc] hover:bg-white/90 text-base md:text-lg lg:text-xl px-8 md:px-12 py-4 md:py-6 font-bold shadow-xl w-full sm:w-auto"
                   onClick={() => document.getElementById('order-form')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Заказать со скидкой 40%
@@ -77,12 +77,12 @@ const ProductInfo = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-card">
+      <section className="py-10 md:py-16 lg:py-20 px-4 bg-card">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12">
             <span itemProp="name">Преимущества Магния Хелат + Витамин В6</span>
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {[
               { icon: 'Zap', title: 'Снижает усталость', desc: 'Клинически доказано снижение усталости на 82% за 30 дней приёма' },
               { icon: 'Heart', title: 'Поддержка сердца', desc: 'Нормализует сердечный ритм и артериальное давление' },
@@ -92,12 +92,12 @@ const ProductInfo = () => {
               { icon: 'Smile', title: 'Стрессоустойчивость', desc: 'Снижает уровень кортизола и тревожности' }
             ].map((benefit, idx) => (
               <Card key={idx} className="hover:shadow-xl transition-shadow border-[#D4EAF2]">
-                <CardContent className="pt-6">
-                  <div className="bg-[#E8F4F8] w-14 h-14 rounded-full flex items-center justify-center mb-4">
-                    <Icon name={benefit.icon} className="text-[#339edc]" size={28} />
+                <CardContent className="pt-4 md:pt-6">
+                  <div className="bg-[#E8F4F8] w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center mb-3 md:mb-4">
+                    <Icon name={benefit.icon} className="text-[#339edc]" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.desc}</p>
+                  <h3 className="text-base md:text-lg lg:text-xl font-bold mb-2">{benefit.title}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground">{benefit.desc}</p>
                 </CardContent>
               </Card>
             ))}
@@ -105,55 +105,55 @@ const ProductInfo = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-[#E8F4F8]">
+      <section className="py-10 md:py-16 lg:py-20 px-4 bg-[#E8F4F8]">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">Характеристики</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8 md:mb-12">Характеристики</h2>
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
             <Card className="border-[#D4EAF2]">
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Форма магния:</span>
-                  <span className="text-[#339edc] font-bold">Хелат (бисглицинат)</span>
+              <CardContent className="pt-4 md:pt-6">
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm md:text-base font-semibold">Форма магния:</span>
+                  <span className="text-sm md:text-base text-[#339edc] font-bold text-right">Хелат (бисглицинат)</span>
                 </div>
               </CardContent>
             </Card>
             <Card className="border-[#D4EAF2]">
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Биодоступность:</span>
-                  <span className="text-[#339edc] font-bold">95%</span>
+              <CardContent className="pt-4 md:pt-6">
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm md:text-base font-semibold">Биодоступность:</span>
+                  <span className="text-sm md:text-base text-[#339edc] font-bold">95%</span>
                 </div>
               </CardContent>
             </Card>
             <Card className="border-[#D4EAF2]">
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Магний на капсулу:</span>
-                  <span className="text-[#339edc] font-bold">416 мг</span>
+              <CardContent className="pt-4 md:pt-6">
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm md:text-base font-semibold">Магний на капсулу:</span>
+                  <span className="text-sm md:text-base text-[#339edc] font-bold">416 мг</span>
                 </div>
               </CardContent>
             </Card>
             <Card className="border-[#D4EAF2]">
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Витамин В6:</span>
-                  <span className="text-[#339edc] font-bold">6 мг</span>
+              <CardContent className="pt-4 md:pt-6">
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm md:text-base font-semibold">Витамин В6:</span>
+                  <span className="text-sm md:text-base text-[#339edc] font-bold">6 мг</span>
                 </div>
               </CardContent>
             </Card>
             <Card className="border-[#D4EAF2]">
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Капсул в упаковке:</span>
-                  <span className="text-[#339edc] font-bold">120 шт</span>
+              <CardContent className="pt-4 md:pt-6">
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm md:text-base font-semibold">Капсул в упаковке:</span>
+                  <span className="text-sm md:text-base text-[#339edc] font-bold">120 шт</span>
                 </div>
               </CardContent>
             </Card>
             <Card className="border-[#D4EAF2]">
-              <CardContent className="pt-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="font-semibold">Курс приема:</span>
-                  <span className="text-[#339edc] font-bold">30 дней</span>
+              <CardContent className="pt-4 md:pt-6">
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-sm md:text-base font-semibold">Курс приема:</span>
+                  <span className="text-sm md:text-base text-[#339edc] font-bold">30 дней</span>
                 </div>
               </CardContent>
             </Card>

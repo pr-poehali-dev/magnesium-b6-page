@@ -106,15 +106,15 @@ const OrderForm = () => {
   const totalPrice = 1230 * orderForm.quantity;
 
   return (
-    <section id="order-form" className="py-20 px-4 bg-gradient-to-br from-white to-[#E8F4F8]">
+    <section id="order-form" className="py-10 md:py-16 lg:py-20 px-4 bg-gradient-to-br from-white to-[#E8F4F8]">
       <div className="max-w-3xl mx-auto">
-        <div className="bg-card p-8 rounded-2xl shadow-2xl border-2 border-[#339edc]">
-          <h2 className="text-3xl font-bold text-center mb-2">Оформить заказ</h2>
-          <p className="text-center text-muted-foreground mb-8">
+        <div className="bg-card p-4 md:p-6 lg:p-8 rounded-2xl shadow-2xl border-2 border-[#339edc]">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Оформить заказ</h2>
+          <p className="text-sm md:text-base text-center text-muted-foreground mb-6 md:mb-8">
             Заполните форму, и мы свяжемся с вами для подтверждения
           </p>
           
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
             <div>
               <Label htmlFor="fullName">ФИО *</Label>
               <Input
@@ -128,7 +128,7 @@ const OrderForm = () => {
               )}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="phone">Телефон *</Label>
                 <InputMask
@@ -225,31 +225,31 @@ const OrderForm = () => {
                 onValueChange={(value) => setValue('paymentMethod', value)}
                 className="mt-2 space-y-3"
               >
-                <div className="flex items-center space-x-2 border border-border rounded-lg p-4 hover:bg-[#E8F4F8] transition-colors cursor-pointer">
+                <div className="flex items-center space-x-2 border border-border rounded-lg p-3 md:p-4 hover:bg-[#E8F4F8] transition-colors cursor-pointer">
                   <RadioGroupItem value="card" id="card" />
                   <Label htmlFor="card" className="cursor-pointer flex-1">
                     <div className="flex items-center gap-2">
-                      <Icon name="CreditCard" size={20} className="text-[#339edc]" />
-                      <span className="font-semibold">Банковская карта</span>
+                      <Icon name="CreditCard" size={18} className="text-[#339edc] md:w-5 md:h-5" />
+                      <span className="text-sm md:text-base font-semibold">Банковская карта</span>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1">Visa, MasterCard, МИР</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mt-1">Visa, MasterCard, МИР</p>
                   </Label>
                 </div>
-                <div className="flex items-center space-x-2 border border-border rounded-lg p-4 hover:bg-[#E8F4F8] transition-colors cursor-pointer">
+                <div className="flex items-center space-x-2 border border-border rounded-lg p-3 md:p-4 hover:bg-[#E8F4F8] transition-colors cursor-pointer">
                   <RadioGroupItem value="sbp" id="sbp" />
                   <Label htmlFor="sbp" className="cursor-pointer flex-1">
                     <div className="flex items-center gap-2">
-                      <Icon name="Smartphone" size={20} className="text-[#339edc]" />
-                      <span className="font-semibold">СБП (Система Быстрых Платежей)</span>
+                      <Icon name="Smartphone" size={18} className="text-[#339edc] md:w-5 md:h-5" />
+                      <span className="text-sm md:text-base font-semibold">СБП (Система Быстрых Платежей)</span>
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1">Оплата через мобильный банк</p>
+                    <p className="text-xs md:text-sm text-muted-foreground mt-1">Оплата через мобильный банк</p>
                   </Label>
                 </div>
               </RadioGroup>
             </div>
 
-            <div className="bg-[#E8F4F8] p-6 rounded-lg border-2 border-[#D4EAF2]">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-[#E8F4F8] p-4 md:p-6 rounded-lg border-2 border-[#D4EAF2]">
+              <div className="flex items-center justify-between mb-3 md:mb-4">
                 <Label htmlFor="quantity">Количество:</Label>
                 <Input
                   id="quantity"
@@ -261,10 +261,10 @@ const OrderForm = () => {
                   className="w-20"
                 />
               </div>
-              <div className="flex justify-between items-baseline">
-                <span className="text-xl font-semibold">Итого к оплате:</span>
-                <div className="text-right">
-                  <span className="text-3xl font-bold text-[#339edc]">{totalPrice.toLocaleString()} ₽</span>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline gap-2">
+                <span className="text-base md:text-lg lg:text-xl font-semibold">Итого к оплате:</span>
+                <div className="text-left sm:text-right">
+                  <span className="text-2xl md:text-3xl font-bold text-[#339edc]">{totalPrice.toLocaleString()} ₽</span>
                   {orderForm.quantity > 1 && (
                     <p className="text-sm text-muted-foreground">
                       {orderForm.quantity} шт × 1 230 ₽
@@ -277,12 +277,12 @@ const OrderForm = () => {
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="w-full bg-[#339edc] hover:bg-[#2889c4] text-white text-xl py-8 disabled:opacity-50"
+              className="w-full bg-[#339edc] hover:bg-[#2889c4] text-white text-base md:text-lg lg:text-xl py-6 md:py-8 disabled:opacity-50"
             >
               {isSubmitting ? 'Обработка...' : 'Перейти к оплате'}
             </Button>
 
-            <p className="text-sm text-muted-foreground text-center">
+            <p className="text-xs md:text-sm text-muted-foreground text-center">
               Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
             </p>
           </form>
