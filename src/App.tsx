@@ -9,6 +9,7 @@ import Success from "./pages/Success";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import FloatingTelegramButton from "./components/FloatingTelegramButton";
+import YandexMetrika from "./components/YandexMetrika";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <YandexMetrika />
       <FloatingTelegramButton />
       <BrowserRouter>
         <Routes>
