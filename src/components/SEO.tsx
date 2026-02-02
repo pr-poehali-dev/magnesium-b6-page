@@ -96,6 +96,75 @@ const SEO = ({ productData, organizationData }: SEOProps) => {
     script3.text = JSON.stringify(breadcrumbSchema);
     document.head.appendChild(script3);
 
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чем хелат магния лучше других форм?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Хелатная форма имеет биодоступность до 95% против 30-40% у оксида магния. Магний связан с аминокислотами, что обеспечивает максимальное усвоение без побочных эффектов со стороны ЖКТ."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Есть ли побочные эффекты?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Хелат магния — самая безопасная форма. В отличие от оксида или цитрата, не вызывает расстройств ЖКТ. Возможна индивидуальная непереносимость компонентов (крайне редко)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Когда будет результат?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Первые эффекты (улучшение сна, снижение тревожности) — через 7-10 дней. Полный эффект по энергии, концентрации, устранению судорог — через 3-4 недели регулярного приёма."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли принимать беременным?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Магний безопасен при беременности и лактации, но дозировку должен определить врач. Проконсультируйтесь с вашим акушером-гинекологом перед началом приёма."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Совместим ли с другими добавками?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, хорошо сочетается с витамином D, омега-3, цинком. Не рекомендуется одновременный приём с высокими дозами кальция (снижает усвоение магния) — разнесите приёмы на 2-3 часа."
+          }
+        }
+      ]
+    };
+
+    const script4 = document.createElement('script');
+    script4.type = 'application/ld+json';
+    script4.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script4);
+
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "PharmExpert - Магний Хелат",
+      "url": window.location.origin,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${window.location.origin}/search?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    const script5 = document.createElement('script');
+    script5.type = 'application/ld+json';
+    script5.text = JSON.stringify(websiteSchema);
+    document.head.appendChild(script5);
+
   }, [productData, organizationData]);
 
   return null;
