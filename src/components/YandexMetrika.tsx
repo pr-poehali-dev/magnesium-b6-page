@@ -8,18 +8,8 @@ declare global {
 
 const YandexMetrika = () => {
   useEffect(() => {
-    const metrikaId = import.meta.env.VITE_YANDEX_METRIKA_ID;
-    
-    if (!metrikaId) {
-      console.warn('YANDEX_METRIKA_ID не установлен');
-      return;
-    }
-
+    const metrikaId = '101026698';
     const id = parseInt(metrikaId, 10);
-    if (isNaN(id)) {
-      console.error('YANDEX_METRIKA_ID должен быть числом');
-      return;
-    }
 
     (function (m, e, t, r, i, k, a) {
       m[i] = m[i] || function () {
