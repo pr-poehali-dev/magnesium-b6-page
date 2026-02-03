@@ -8,7 +8,7 @@ declare global {
 
 const YandexMetrika = () => {
   useEffect(() => {
-    const metrikaId = '101026698';
+    const metrikaId = '106587459';
     const id = parseInt(metrikaId, 10);
 
     (function (m, e, t, r, i, k, a) {
